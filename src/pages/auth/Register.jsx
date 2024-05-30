@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import api from '../hooks/Api';
+import api from '../../api/Api';
 import { Link } from 'react-router-dom'
-
+import './Auth.css'
 
 const Register = () => {
   const [name, setName] = useState('');

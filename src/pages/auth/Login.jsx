@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import api from '../hooks/Api';
+import api from '../../api/Api';
 import { Link, useNavigate } from 'react-router-dom';
-import './Login.css'
+import './Auth.css'
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -10,6 +10,9 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    localStorage.removeItem('token')
+    
     try {
       const response = await api.post('/auth/login', {
         email,

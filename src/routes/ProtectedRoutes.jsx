@@ -1,12 +1,11 @@
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
-import PixCreate from '../components/PixCreate';
+import { Navigate } from 'react-router-dom';
 
-const ProtectedRoutes = () => {
+const ProtectedRoutes = ({ element: Element }) => {
   const isAuthenticated = !!localStorage.getItem('token');
 
   return (
-        isAuthenticated ? <PixCreate /> : <Navigate to="/login" />
+      isAuthenticated ? <Element/> : <Navigate to="/login" />
     )
 };
 
