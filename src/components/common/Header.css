@@ -10,23 +10,28 @@
     color: #fff;
     display: flex;
     align-items: center;
-    background-color: #00000056;
+    justify-content: space-between;
+    background-color: #000000;
     border-bottom: 2px solid #00000056;
     font-weight: bold;
     height: 100px;
+    padding: 0 15%;
     transition: 0.3s;
     box-shadow: 0 4px 4px rgba(0,0,0,.3);
 }
 
 .navbar p{
     font-size: 1.3em;
+    font-weight: 400;
+    margin: 0;
 }
 
 .navbar ul {
-    padding-left: 30%;
     display: flex;
-    justify-content: end;
-    align-items: end;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar ul li {
@@ -37,10 +42,10 @@
 .navbar ul li::after {
     content: "";
     display: block;
-    border-bottom: 2px solid #00ff88;
-    margin-top: 5px;
+    border-bottom: 1px solid #cab49b;
+    transform-origin: 0 50%;
     transform: scaleX(0);
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease;
 }
 
 .navbar ul li:hover::after {
@@ -53,11 +58,93 @@
 }
 
 .navbar a {
+    font-family: 'Montserrat', Arial, sans-serif;
     text-decoration: none;
     color: #fff; 
     cursor: pointer;
 }
 
 .navbar a:hover {
-    color: #00ff88;
+    color: #cab49b;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #333333;
+    border-radius: 25px;
+    padding: 2px 10px;
+    max-width: 400px;
+    width: 100%;
+    margin-left: 20px; /* Espaço à esquerda da barra de pesquisa */
+    flex-grow: 1; /* Faz a barra de pesquisa crescer para ocupar o espaço disponível */
+}
+  
+  .search-bar input[type="text"] {
+    border: none;
+    outline: none;
+    background: none;
+    padding: 10px;
+    font-size: 16px;
+    flex-grow: 1;
+    border-radius: 25px;
+  }
+  
+  .search-bar input[type="text"]::placeholder {
+    color: #888;
+  }
+  
+  .search-bar button {
+    background-color: #333333;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-bar button:hover {
+    background-color: #4d4d4d;
+  }
+
+  #search-img{
+    max-width: 20px;
+  }
+
+
+.navbar-cart button{
+    background-color: inherit;
+    border: none;
+    padding: 12px 11px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-cart button:hover{
+    background-color: #333333;
+}
+
+.cart-button{
+    display: flex;
+    position: relative;
+}
+ 
+#cart-nav{
+    max-width: 30px;
+}
+
+.total-items{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 50%;
+    background-color: rgb(255, 115, 0);
+    color: white;
+    font-weight: bold;
 }

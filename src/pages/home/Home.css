@@ -1,0 +1,30 @@
+.container {
+    padding: 6%;
+}
+
+#product-section{
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.card-grid {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajuste responsivo */
+    margin-top: 1rem;
+    gap: 40px;
+}
+
+.banner{
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+.home-error{
+    height: 95vh;
+    display: flex;
+    align-items: center;
+}

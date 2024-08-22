@@ -1,15 +1,22 @@
 body{
   margin: 0;
 }
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/caminho/para/fontes/Montserrat.woff2') format('woff2'),
+       url('/caminho/para/fontes/Montserrat.woff') format('woff');
   font-weight: 400;
+  font-style: normal;
+}
 
+:root {
+  font-family: 'Neutra Text';
+  src: url('/caminho/para/fontes/NeutraText.woff2') format('woff2'),
+       url('/caminho/para/fontes/NeutraText.woff') format('woff');  line-height: 1.5;
+  font-family: 'Neutra Text', Arial, sans-serif;
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #201b2c;
-
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #f2f3f4;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -18,12 +25,9 @@ body{
 
 ::-webkit-scrollbar {
   width: 10px;
-  background-color: #1b1b1b;
+  background-color: #1f1d1d;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #2f2841;
+  background-color: #000;
   border-radius: 5px;
-}
-::selection {
-  background-color: #2f2841;
 }

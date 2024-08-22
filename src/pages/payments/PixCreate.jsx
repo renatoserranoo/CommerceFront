@@ -1,26 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import api from '../../api/Api';
-import copiar from '../../assets/copiar.png'
-import './Pix.css'
+import { CartContext } from '../../contexts/CartContext';
+import copiar from '../../assets/copiar.png';
+import './Pix.css';
 
 const PixCreate = () => {
+  const { cartItems } = useContext(CartContext); // Obtenha os itens do carrinho
   const [chargeResponse, setChargeResponse] = useState(null);
-  const [formData, setFormData] = useState({
-    chave: '',
-    valor: '',
-  });
+  
+  const chavePix = 'fca43fd4-e044-44af-aa2e-334dc77e0651'; // Defina sua chave Pix fixa aqui
 
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // Calcule o valor total do carrinho
+  const totalCartValue = cartItems.reduce((total, item) => total + item.product.price * item.quantity, 0).toFixed(2);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    if (totalCartValue > 0) {
+      handleSubmit(); // Gere o pagamento automaticamente ao carregar a página, se o valor for maior que zero
+    }
+  }, [totalCartValue]);
+
+  const handleSubmit = async () => {
     try {
-      const response = await api.post('/pix', formData);
+      const response = await api.post('/pix', {
+        chave: chavePix,
+        valor: totalCartValue,
+      });
       setChargeResponse(response.data);
     } catch (error) {
       console.error('Error creating Pix charge', error);
@@ -38,22 +42,7 @@ const PixCreate = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div className='textfield'>
-          <label>
-            Chave Pix:
-          </label>
-          <input type="text" name="chave" value={formData.chave} onChange={handleInputChange} />
-        </div>
-        <div className='textfield'>
-          <label>
-            Valor:
-          </label>
-          <input type="text" name="valor" value={formData.valor} onChange={handleInputChange} />
-        </div>
-        <button type="submit" className='btn-login'>Finalizar Compra</button>
-      </form>
+    <div className='pay'>
       {chargeResponse && (
         <div>
           <p>ID da Cobrança: {chargeResponse.loc.id}</p>
@@ -62,8 +51,11 @@ const PixCreate = () => {
           )}
           <div className='copy'>
             <textarea readOnly value={chargeResponse.pixCopiaECola} />
-            <button onClick={handleCopy} className='btn-icon'><img src={copiar} alt="copyicon" className='copy-icon'/></button>
+            <button onClick={handleCopy} className='btn-icon'>
+              <img src={copiar} alt="copyicon" className='copy-icon'/>
+            </button>
           </div>
+          <b>Abra o Aplicativo do seu banco para ler o QR Code ou copie o código</b>
         </div>
       )}
     </div>
