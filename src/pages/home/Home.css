@@ -1,4 +1,4 @@
-.container {
+.home-container {
     padding: 6%;
 }
 
@@ -23,8 +23,21 @@
     border-radius: 20px;
 }
 
+.load-home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
 .home-error{
     height: 95vh;
     display: flex;
     align-items: center;
+}
+
+@media (max-width: 767px) {
+    .home-container{
+        padding-top: 150px;
+    }
 }

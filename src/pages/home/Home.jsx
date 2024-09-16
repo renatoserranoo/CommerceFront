@@ -4,6 +4,7 @@ import { Card } from "../../components/card/Card";
 import banner from "../../assets/banner.png";
 import "./Home.css";
 import axios from "axios";
+import Load from "../../components/load/Load";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -18,7 +19,7 @@ const Home = () => {
         );
         setData(response.data);
       } catch (error) {
-        console.error(error); // Log do erro no console
+        console.error(error);
 
         setError("Failed to load products");
       } finally {
@@ -29,10 +30,16 @@ const Home = () => {
     fetchProducts();
   }, []);
 
+  const handleDelete = (deletedProductId) => {
+    setData((prevData) =>
+      prevData.filter((product) => product.id !== deletedProductId)
+    );
+  };
+
   if (loading) {
     return (
-      <div className="load">
-        <div className="spinner"></div>
+      <div className="load-home">
+        <Load isLoading={loading} />
       </div>
     );
   }
@@ -42,7 +49,7 @@ const Home = () => {
   }
 
   return (
-    <div className="container">
+    <div className="home-container">
       <img src={banner} alt="" className="banner" />
       <b id="product-section">Todos Produtos</b>
       <div className="card-grid">
@@ -53,6 +60,7 @@ const Home = () => {
             price={productData.price}
             title={productData.title}
             image={productData.image}
+            onDelete={handleDelete}
           />
         ))}
       </div>

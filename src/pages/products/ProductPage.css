@@ -1,112 +1,122 @@
-.product-container{
-    height: 85vh;
-    padding: 7%;
-    padding-bottom: 0;
-}
-.product-page {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: space-around;
-    padding: 20px;
-    border-radius: 10px;
-    width: 100%;
-    background-color: #fff;
+.product-container {
+  height: 90vh;
+  padding: 7%;
+  padding-bottom: 0;
+  margin-top: 160px;
 }
 
-.product-title{
-    display: flex;
-    align-items: flex-start;
-    margin-inline: 15%;
+.product-page {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  background-color: #fff;
+}
+
+.product-title {
+  display: flex;
+  align-items: center;
+  margin: 20px 15%;
+}
+
+.product-title h6 {
+  margin: 0 5px;
 }
 
 .product-image {
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-image img {
-    min-width: 400px;
-    max-width: 25rem;
-    height: auto;
+  min-width: 400px;
+  max-width: 25rem;
+  height: auto;
 }
 
 .product-details {
-    width: 50%;
-    display: flex;
-    padding: 20px;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
+  width: 50%;
+  display: flex;
+  padding: 20px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .product-price {
-    color: #13aa52;
-    font-weight: 600;
-    font-size: 34px;
+  color: #13aa52;
+  font-weight: bold;
+  font-size: 34px;
+  margin: 30px 0;
 }
 
 .add-to-cart {
-    background-color: #13aa52;
-    border: 1px solid #13aa52;
-    border-radius: 4px;
-    width: 220px;
-    box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
-    box-sizing: border-box;
-    color: #fff;
-    cursor: pointer;
-    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    outline: none;
-    padding: 10px 25px;
-    text-align: center;
-    transition: transform 150ms, box-shadow 150ms;
-    user-select: none;
-} 
+  background-color: #13aa52;
+  border: 1px solid #13aa52;
+  border-radius: 4px;
+  width: 220px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  outline: none;
+  padding: 10px 25px;
+  text-align: center;
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+}
 
 .add-to-cart:hover {
-    box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
-    transform: translateY(-2px);
+  box-shadow: rgba(0, 0, 0, 0.15) 0 3px 9px 0;
+  transform: translateY(-2px);
 }
 
 .product-description {
-    font-size: 14px;
-    line-height: 1.5;
-    text-align: justify;
-    max-width: 560px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  text-align: justify;
+  max-width: 560px;
+  margin: 20px 0;
 }
 
-#cart-image{
-    max-width: 23px;
-    margin-inline: 6px;
+#cart-image {
+  max-width: 23px;
+  margin-inline: 6px;
 }
 
-.load{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 95vh;
-}
-
-.spinner {
-    display: inline-block;
-    border: 3px solid rgba(0, 0, 0, 0.2);
-    margin: 20px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border-left-color: #51473c;
-    animation: spin 1s linear infinite;
+@media (max-width: 767px) {
+  .product-container {
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
   }
-  
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+  .product-title {
+    margin: 10px;
   }
+  .product-title h4 {
+    font-size: 18px;
+    margin: 0;
+  }
+  .product-page {
+    padding: 30px;
+    flex-direction: column;
+    gap: 0;
+  }
+  .product-details {
+    width: 100%;
+    padding: 0;
+  }
+  .product-image img {
+    min-width: 300px;
+    max-width: 80%;
+  }
+}

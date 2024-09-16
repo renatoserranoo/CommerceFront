@@ -1,45 +1,24 @@
 import React, { useContext, useState } from "react";
-import api from "../../api/Api";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 import "./Auth.css";
-import { CartContext } from "../../contexts/CartContext";
+import Load from "../../components/load/Load";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-
-  const { getCart } = useContext(CartContext); // Remover e colocar no auth context
+  const { login, loading, error } = useContext(AuthContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true);
-
-    localStorage.removeItem("token");
-
     try {
-      const response = await api.post("/auth/login", {
-        email,
-        password,
-      });
-
-      const token = response.data.token;
-      localStorage.setItem("token", token);
-
-      console.log("User Logged in:", response.data);
-      await getCart();
-      navigate("/");
-    } catch (error) {
-      console.error("There was an error logging the user!", error);
-    } finally {
-      setLoading(false);
+      await login(email, password);
+    } catch (err) {
+      setError("Login falhou. Verifique suas credenciais e tente novamente.");
     }
   };
 
   const handleGoogleLogin = () => {
-    setLoading(true);
-
     const width = 500;
     const height = 600;
 
@@ -53,8 +32,6 @@ const Login = () => {
       "_blank",
       `width=${width},height=${height},top=${top},left=${left}`
     );
-
-    setLoading(false);
   };
 
   return (
@@ -69,6 +46,7 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={loading}
+            required
           />
         </div>
         <div className="textfield">
@@ -79,12 +57,33 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             disabled={loading}
+            required
           />
         </div>
-        {(loading && <div className="spinner"></div>) || (
+        {loading ? (
+          <Load isLoading={loading} />
+        ) : (
           <button type="submit" className="btn-login">
             Login
           </button>
+        )}
+        {error && (
+          <div
+            className="alert alert-danger"
+            role="alert"
+            style={{
+              width: "100%",
+              fontSize: "13px",
+              fontWeight: "bold",
+              padding: "0",
+              margin: "0",
+              backgroundColor: "inherit",
+              border: "0",
+              color: "#ff4d4d",
+            }}
+          >
+            {error}
+          </div>
         )}
         <hr style={{ width: "100%" }} />
         <button

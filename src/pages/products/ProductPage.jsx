@@ -4,6 +4,7 @@ import cart from "../../assets/cart.png";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
+import Load from "../../components/load/Load";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -12,8 +13,8 @@ const ProductPage = () => {
 
   if (loading) {
     return (
-      <div className="load">
-        <div className="spinner"></div>
+      <div className="load-home">
+        <Load isLoading={loading} />
       </div>
     );
   }
@@ -30,6 +31,7 @@ const ProductPage = () => {
     <div className="product-container">
       <div className="product-title">
         <h4>{product.title}</h4>
+        <h6>- {product.category}</h6>
       </div>
       <div className="product-page">
         <div className="product-image">

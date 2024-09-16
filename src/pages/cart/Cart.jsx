@@ -5,11 +5,7 @@ import "./Cart.css";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const { cartItems, getCart } = useContext(CartContext);
-
-  useEffect(() => {
-    getCart();
-  }, [getCart]);
+  const { cartItems } = useContext(CartContext);
 
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.product.price * item.quantity,
@@ -20,7 +16,9 @@ const Cart = () => {
     <div className="cart">
       <h3>Meu Carrinho</h3>
       {cartItems.length === 0 ? (
-        <p className="">Seu carrinho está vazio.</p>
+        <div className="empty-cart">
+          <p>Seu carrinho está vazio.</p>
+        </div>
       ) : (
         <>
           <div className="cart-container">

@@ -1,43 +1,63 @@
-.pay{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.pay {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.copy{
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.copy {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.copy-icon{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+.copy-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
-.btn-icon{
-    margin-inline: 10px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 0;
-    background-color: #9e9e9e;
-    cursor: pointer;
+.btn-icon {
+  margin-inline: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background-color: #9e9e9e;
+  cursor: pointer;
 }
 
 textarea[readonly] {
-    width: 400px;
-    height: 45px;
-    color: #fff;
-    background-color: #9e9e9e;
-    border: 0px;
-    padding: 8px;
-    border-radius: 10px;
-    resize: none;
+  width: 450px;
+  height: 62px;
+  color: #fff;
+  background-color: #9e9e9e;
+  border: 0px;
+  padding: 8px;
+  border-radius: 10px;
+  resize: none;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.load-pix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+@media (max-width: 767px) {
+  .pay {
+    width: 90%;
+  }
+  textarea[readonly] {
+    width: 75%;
+    height: 80px;
+    font: 0.9em sans-serif;
+  }
 }

@@ -1,29 +1,19 @@
-import React, { useState } from "react";
-import api from "../../api/Api";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Auth.css";
+import { AuthContext } from "../../contexts/AuthContext";
+import Load from "../../components/load/Load";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { register, loading, error } = useContext(AuthContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true);
-    try {
-      const response = await api.post("/user/register", {
-        name,
-        email,
-        password,
-      });
-      console.log("User registered:", response.data);
-    } catch (error) {
-      console.error("There was an error registering the user!", error);
-    } finally {
-      setLoading(false);
-    }
+
+    await register(name, email, password);
   };
 
   return (
@@ -38,6 +28,7 @@ const Register = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             disabled={loading}
+            required
           />
         </div>
         <div className="textfield">
@@ -48,6 +39,7 @@ const Register = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={loading}
+            required
           />
         </div>
         <div className="textfield">
@@ -58,14 +50,34 @@ const Register = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             disabled={loading}
+            required
           />
         </div>
-        {(loading && <div className="spinner"></div>) || (
+        {loading ? (
+          <Load isLoading={loading} />
+        ) : (
           <button type="submit" className="btn-login">
             Criar Conta
           </button>
         )}
-        <div>
+        <div style={{ width: "100%"}}>
+          {error && (
+            <div
+              className="alert alert-danger"
+              role="alert"
+              style={{
+                width: "100%",
+                fontSize: "13px",
+                fontWeight: "bold",
+                padding: "0",
+                backgroundColor: "inherit",
+                border: "0",
+                color: "#ff4d4d",
+              }}
+            >
+              {error}
+            </div>
+          )}
           <p className="have-account">
             Já possui uma conta? <Link to="/login">Fazer Login</Link>
           </p>

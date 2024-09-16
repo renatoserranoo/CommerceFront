@@ -1,10 +1,11 @@
-import React, { createContext, useCallback, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import api from "../api/Api";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const addToCart = async (productId, quantity) => {
     try {
@@ -17,9 +18,8 @@ export const CartProvider = ({ children }) => {
 
   const getCart = async () => {
     try {
-      const response = await api.get('/cart');
+      const response = await api.get("/cart");
       setCartItems(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error("Failed to load cart", error);
     }
@@ -38,7 +38,14 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, getCart, removeFromCart }}
+      value={{
+        cartItems,
+        setCartItems,
+        addToCart,
+        getCart,
+        removeFromCart,
+        setIsLoggedIn,
+      }}
     >
       {children}
     </CartContext.Provider>
