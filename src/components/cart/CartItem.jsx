@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./CartItem.css";
 import trash from "../../assets/trash.png";
 import { CartContext } from "../../contexts/CartContext";
-import { Button, Row, Col } from "react-bootstrap";
+import { Button, Row, Col, Image, Stack } from "react-bootstrap";
 
 const CartItem = ({ item }) => {
   const { removeFromCart, addToCart } = useContext(CartContext);
@@ -22,59 +22,50 @@ const CartItem = ({ item }) => {
   };
 
   return (
-    <div className="cart-item mb-3 p-3">
-      <Row>
-        <Col xs={3}>
-          <img
-            src={item.product.image}
-            alt={item.product.title}
-            className="cart-item-image img-fluid"
-          />
-        </Col>
-        <Col xs={6} className="cart-item-details">
-          <h4>{item.product.title}</h4>
-          <p>
-            Valor: <b>R${item.product.price.toFixed(2)}</b>
-          </p>
-        </Col>
-        <Col
-          xs={3}
-          className="custom-quantity d-flex align-items-center justify-content-between"
-        >
-          <div className="cart-item-quantity d-flex flex-column align-items-center mb-2">
-            <p>Quant:</p>
-            <div className="d-flex align-items-center justify-content-center">
-              <Button
-                variant="secondary"
-                size="sm"
-                onClick={handleDecreaseQuantity}
-                className="me-2 quantity-button"
-              >
-                <b>-</b>
-              </Button>
-              <span>{item.quantity}</span>
-              <Button
-                variant="secondary"
-                size="sm"
-                onClick={handleIncreaseQuantity}
-                className="ms-2 quantity-button"
-              >
-                <b>+</b>
-              </Button>
-            </div>
-          </div>
+    <Stack direction="horizontal" gap={3} className="border-bottom pb-3 mb-3">
+      <Image
+        src={item.product.image}
+        alt={item.product.title}
+        style={{ width: "100px", height: "100px", objectFit: "cover" }}
+      />
+      <div className="me-auto text-start">
+        <h5>{item.product.title}</h5>
+        <p className="mb-1 fs-5">R${item.product.price}</p>
+        <div className="d-flex align-items-center">
           <Button
-            variant="danger"
+            variant="secondary"
             size="sm"
-            onClick={handleRemoveItem}
-            className="d-flex align-items-center justify-content-center"
-            style={{ padding: "8px", borderRadius: "50%" }}
+            onClick={handleDecreaseQuantity}
+            className="me-1 quantity-button"
           >
-            <img src={trash} alt="trash icon" className="trash-icon" />
+            <b>-</b>
           </Button>
-        </Col>
-      </Row>
-    </div>
+          <span className="fs-5">{item.quantity}</span>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={handleIncreaseQuantity}
+            className="ms-1 quantity-button"
+          >
+            <b>+</b>
+          </Button>
+        </div>
+      </div>
+      <div className="text-end d-flex flex-column align-items-end gap-2">
+        <Button
+          variant="danger"
+          size="sm"
+          onClick={handleRemoveItem}
+          className="d-flex align-items-center justify-content-center"
+          style={{ padding: "5px", borderRadius: "8px" }}
+        >
+          <img src={trash} alt="trash icon" className="trash-icon" />
+        </Button>
+        <p className="mb-1 fw-bold fs-5">
+          R${(item.product.price * item.quantity).toFixed(2)}
+        </p>
+      </div>
+    </Stack>
   );
 };
 

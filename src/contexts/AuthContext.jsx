@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import api from "../api/Api";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "./CartContext";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
 
@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
       }
     };
   }, []);
-  
+
   const login = async (email, password) => {
     setLoading(true);
     try {
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
         name: response.data.name,
         role: response.data.role,
       });
-      
+
       setIsLoggedIn(true);
       await getCart();
       navigate("/");
@@ -41,6 +41,40 @@ export const AuthProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const googleLogin = () => {
+    const width = 500;
+    const height = 600;
+    const left = window.innerWidth / 2 - width / 2;
+    const top = window.innerHeight / 2 - height / 3;
+
+    window.open(
+      "http://localhost:8080/oauth2/authorization/google",
+      "_blank",
+      `width=${width},height=${height},top=${top},left=${left}`
+    );
+
+    window.addEventListener("message", (event) => {
+      if (event.origin === "http://localhost:8080") {
+        const { success, message, name, role } = event.data;
+
+        setUser({
+          name: name,
+          role: role,
+        });
+
+        if (success) {
+          try {
+            getCart();
+            navigate("/");
+          } catch (error) {
+            console.error("Erro no login:", message);
+            setError(event.data.message);
+          }
+        }
+      }
+    });
   };
 
   const register = async (name, email, password) => {
@@ -66,7 +100,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, error, login, register, logout }}
+      value={{ user, loading, error, login, googleLogin, register, logout }}
     >
       {children}
     </AuthContext.Provider>

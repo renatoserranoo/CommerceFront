@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import "./Card.css";
 import cart from "../../assets/cart.png";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import api from "../../api/Api";
 import ProductActionsDropdown from "./productActions";
 import { AuthContext } from "../../contexts/AuthContext";
+import BuyModal from "../modal/BuyModal";
 
 export function Card({ id, price, image, title, onDelete }) {
+  const [showModal, setShowModal] = useState(false);
   const { addToCart } = useContext(CartContext);
   const { user } = useContext(AuthContext);
 
@@ -15,6 +17,10 @@ export function Card({ id, price, image, title, onDelete }) {
 
   const handleAddToCart = () => {
     addToCart(id, 1);
+  };
+
+  const showModalHandler = () => {
+    setShowModal(true);
   };
 
   const handleDeleteProduct = async () => {
@@ -40,10 +46,22 @@ export function Card({ id, price, image, title, onDelete }) {
         <h6>{title}</h6>
         <b>R${price}</b>
       </Link>
-      <button className="card-button" onClick={handleAddToCart}>
-        <img src={cart} alt="cart-image" id="cart-image" />
-        Comprar
-      </button>
+      {!user ? (
+        <button className="card-button" onClick={showModalHandler}>
+          <img src={cart} alt="cart-image" id="cart-image" />
+          Comprar
+        </button>
+      ) : (
+        <button className="card-button" onClick={handleAddToCart}>
+          <img src={cart} alt="cart-image" id="cart-image" />
+          Comprar
+        </button>
+      )}
+      <BuyModal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        onConfirm={true}
+      />
     </div>
   );
 }

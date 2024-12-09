@@ -3,6 +3,18 @@ import { Link } from "react-router-dom";
 import "./Auth.css";
 import { AuthContext } from "../../contexts/AuthContext";
 import Load from "../../components/load/Load";
+import { Lock, Mail, User } from "lucide-react";
+import {
+  Alert,
+  Button,
+  Card,
+  Col,
+  Container,
+  Form,
+  Row,
+} from "react-bootstrap";
+import cartLogo from "../../assets/cartLogo.png";
+import banner from "../../assets/Headphone - Banner.png";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -17,73 +29,135 @@ const Register = () => {
   };
 
   return (
-    <div className="card-login">
-      <h3>Registre-se</h3>
-      <form onSubmit={handleSubmit}>
-        <div className="textfield">
-          <label>Nome:</label>
-          <input
-            placeholder="Digite seu nome..."
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            disabled={loading}
-            required
+    <Container fluid className="p-0">
+      <Row className="min-vh-100 m-0">
+        <Col
+          md={6}
+          className="p-0 p-md-5 d-flex flex-column justify-content-center align-items-center text-white"
+          style={{ backgroundColor: "#01081d" }}
+        >
+          <img
+            src={cartLogo}
+            alt=""
+            width={"70%"}
+            className="d-block d-md-none"
           />
-        </div>
-        <div className="textfield">
-          <label>Email:</label>
-          <input
-            placeholder="Digite seu email..."
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            disabled={loading}
-            required
-          />
-        </div>
-        <div className="textfield">
-          <label>Senha:</label>
-          <input
-            placeholder="Crie sua senha..."
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            disabled={loading}
-            required
-          />
-        </div>
-        {loading ? (
-          <Load isLoading={loading} />
-        ) : (
-          <button type="submit" className="btn-login">
-            Criar Conta
-          </button>
-        )}
-        <div style={{ width: "100%"}}>
-          {error && (
-            <div
-              className="alert alert-danger"
-              role="alert"
-              style={{
-                width: "100%",
-                fontSize: "13px",
-                fontWeight: "bold",
-                padding: "0",
-                backgroundColor: "inherit",
-                border: "0",
-                color: "#ff4d4d",
-              }}
+          <div>
+            <img
+              className="d-none d-md-block"
+              src={banner}
+              alt=""
+              style={{ width: "100%", objectFit: "cover" }}
+            />
+          </div>
+        </Col>
+
+        <Col
+          md={6}
+          className="d-flex align-items-center justify-content-center bg-light"
+        >
+          <div>
+            <Card
+              className="border-0 bg-transparent w-100"
+              style={{ cursor: "auto" }}
             >
-              {error}
-            </div>
-          )}
-          <p className="have-account">
-            Já possui uma conta? <Link to="/login">Fazer Login</Link>
-          </p>
-        </div>
-      </form>
-    </div>
+              <Card.Body className="py-5 p-md-4">
+                <div className="text-center mb-4">
+                  <h2 className="fw-bold mb-2">Cadastro</h2>
+                  <h6 className="text-muted fs-6">
+                    Informe os seus dados abaixo para continuar.
+                  </h6>
+                </div>
+                <Form onSubmit={handleSubmit} className="w-100 text-start">
+                  <Form.Group className="mb-4 w-100" controlId="formEmail">
+                    <Form.Label className="fw-medium fs-5">Nome</Form.Label>
+                    <div className="input-group">
+                      <span className="input-group-text bg-white">
+                        <User size={18} />
+                      </span>
+                      <Form.Control
+                        type="email"
+                        placeholder="Digite seu nome"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        className="py-2"
+                      />
+                    </div>
+                  </Form.Group>
+                  <Form.Group className="mb-4 w-100" controlId="formEmail">
+                    <Form.Label className="fw-medium fs-5">Email</Form.Label>
+                    <div className="input-group">
+                      <span className="input-group-text bg-white">
+                        <Mail size={18} />
+                      </span>
+                      <Form.Control
+                        type="email"
+                        placeholder="Digite seu email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        className="py-2"
+                      />
+                    </div>
+                  </Form.Group>
+
+                  <Form.Group className="mb-4 w-100" controlId="formPassword">
+                    <Form.Label className="fw-medium fs-5">Senha</Form.Label>
+                    <div className="input-group">
+                      <span className="input-group-text bg-white">
+                        <Lock size={18} />
+                      </span>
+                      <Form.Control
+                        type="password"
+                        placeholder="Digite sua senha"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        className="py-2"
+                      />
+                    </div>
+                  </Form.Group>
+
+                  {loading ? (
+                    <Load isLoading={loading} />
+                  ) : (
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      className="w-100 py-2 fw-medium mb-0"
+                      size="lg"
+                    >
+                      Criar Conta
+                    </Button>
+                  )}
+                  {error && (
+                    <Alert
+                      variant="danger"
+                      className="w-75 fs-6"
+                      style={{
+                        position: "absolute",
+                        top: "100%",
+                      }}
+                    >
+                      {error}
+                    </Alert>
+                  )}
+                </Form>
+                <div className="text-center mt-4 fs-6">
+                  <p className="text-muted">
+                    Já Possui uma conta?{" "}
+                    <Link to={"/login"} className="text-decoration-none">
+                      Fazer Login
+                    </Link>
+                  </p>
+                </div>
+              </Card.Body>
+            </Card>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

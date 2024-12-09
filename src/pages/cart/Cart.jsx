@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import CartItem from "../../components/cart/CartItem";
 import "./Cart.css";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const Cart = () => {
   const { cartItems } = useContext(CartContext);
@@ -22,16 +23,16 @@ const Cart = () => {
       ) : (
         <>
           <div className="cart-container">
-            <div className="cart-items">
+            <div className="cart-items border">
               {cartItems.map((item) => (
                 <CartItem key={item.id} item={item} />
               ))}
             </div>
-            <div className="cart-total">
+            <div className="cart-total border">
               <h3>Total: R$ {totalPrice.toFixed(2)}</h3>
-              <Link to="/payment">
-                <button className="checkout-button">Finalizar Compra</button>
-              </Link>
+              <Button as={Link} to="/payment" size="lg">
+                Finalizar Compra
+              </Button>
             </div>
           </div>
         </>

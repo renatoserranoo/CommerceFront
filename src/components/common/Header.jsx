@@ -7,11 +7,12 @@ import cart from "../../assets/cart.png";
 import { CartContext } from "../../contexts/CartContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import SearchBar from "../searchBar/SearchBar";
+import cartLogo from "../../assets/cartLogo.png";
 
 const Header = () => {
   const { cartItems } = useContext(CartContext);
   const { user, logout } = useContext(AuthContext);
-  const [show, setShow] = useState(false); // Estado para controlar a visibilidade do Offcanvas
+  const [show, setShow] = useState(false);
 
   const totalItems = cartItems.reduce(
     (total, item) => total + item.quantity,
@@ -32,20 +33,25 @@ const Header = () => {
           Commerce
         </Navbar.Brand>
         <div className="d-flex align-items-center justify-content-between d-lg-none w-100">
-          <Button variant="link" className="me-4" onClick={handleShow} style={{ color: "white"}}>
+          <Button
+            variant="link"
+            className="me-4"
+            onClick={handleShow}
+            style={{ color: "white" }}
+          >
             <FaBars size={24} />
           </Button>
           <Navbar.Brand as={Link} to="/" className="mx-auto">
             Commerce
           </Navbar.Brand>
-          <Nav.Link as={Link} to="/cart" className="navbar-cart ms-4">
+          <Link as={Link} to="/cart" className="navbar-cart ms-4">
             <button className="cart-button">
               <img src={cart} alt="" id="cart-nav" />
               {totalItems > 0 && (
                 <span className="total-items">{totalItems}</span>
               )}
             </button>
-          </Nav.Link>
+          </Link>
         </div>
         <SearchBar />
 
@@ -63,16 +69,16 @@ const Header = () => {
               Categorias
             </Dropdown.Toggle>
             <Dropdown.Menu className="dropdown-menu-custom">
-              <Dropdown.Item as={Link} to="/category/tech">
+              <Dropdown.Item as={Link} to="/">
                 Eletrônicos
               </Dropdown.Item>
-              <Dropdown.Item as={Link} to="/category/fashion">
+              <Dropdown.Item as={Link} to="/">
                 Moda
               </Dropdown.Item>
-              <Dropdown.Item as={Link} to="/category/home">
+              <Dropdown.Item as={Link} to="/">
                 Casa
               </Dropdown.Item>
-              <Dropdown.Item as={Link} to="/category/book">
+              <Dropdown.Item as={Link} to="/">
                 Livros
               </Dropdown.Item>
             </Dropdown.Menu>
@@ -112,18 +118,14 @@ const Header = () => {
             </Nav>
           )}
 
-          <Nav.Link
-            as={Link}
-            to="/cart"
-            className="navbar-cart d-none d-lg-block"
-          >
+          <Link as={Link} to="/cart" className="navbar-cart ms-4">
             <button className="cart-button">
               <img src={cart} alt="" id="cart-nav" />
-              {totalItems > 0 ? (
+              {totalItems > 0 && (
                 <span className="total-items">{totalItems}</span>
-              ) : null}
+              )}
             </button>
-          </Nav.Link>
+          </Link>
 
           {user && user.role === "ADMIN" && (
             <Button
@@ -221,11 +223,7 @@ const Header = () => {
                 </>
               )}
               {user && user.role === "ADMIN" && (
-                <Button
-                  as={Link}
-                  to="/product-edit"
-                  variant="primary"
-                >
+                <Button as={Link} to="/product-edit" variant="primary">
                   <span>
                     <b>+ Adicionar produto</b>
                   </span>

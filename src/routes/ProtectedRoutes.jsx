@@ -10,4 +10,4 @@ const ProtectedRoutes = ({ element: Element }) => {
   return isAuthenticated ? <Element /> : <Navigate to="/login" />;
 };
 
-export default ProtectedRoutes; 
+export default ProtectedRoutes;

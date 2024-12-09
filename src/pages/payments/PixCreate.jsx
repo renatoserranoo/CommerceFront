@@ -17,6 +17,7 @@ const PixCreate = () => {
 
   useEffect(() => {
     if (totalCartValue > 0) {
+      console.log(chavePix, totalCartValue);
       handleSubmit();
     }
   }, [totalCartValue]);
@@ -27,6 +28,7 @@ const PixCreate = () => {
         chave: chavePix,
         valor: totalCartValue,
       });
+      console.log(response.data);
       setChargeResponse(response.data);
     } catch (error) {
       console.error("Error creating Pix charge", error);

@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between !important;
-  background-color: #000000;
+  background-color: #01081d;
   border-bottom: 2px solid #00000056;
   font-weight: bold;
   height: 100px;
@@ -32,14 +32,13 @@
 }
 
 .navbar-custom a {
-  font-family: "Montserrat", Arial, sans-serif;
   text-decoration: none;
   color: #fff;
   cursor: pointer;
 }
 
 .navbar-custom a:hover {
-  color: #cab49b !important;
+  color: #0d6efd !important;
 }
 
 .ml-auto {
@@ -85,7 +84,7 @@
   bottom: 0; /* Garante que a linha esteja no fundo do elemento */
   margin: 0;
   border: 0;
-  border-bottom: 1px solid #cab49b !important; /* Assegure-se que esta é a única borda sendo aplicada */
+  border-bottom: 1px solid #0d6efd !important; /* Assegure-se que esta é a única borda sendo aplicada */
   transform-origin: 0 50%;
   transform: scaleX(0);
   transition: transform 0.3s ease;
@@ -106,7 +105,7 @@
 }
 
 .navbar-cart .cart-button:hover {
-  background-color: #333333;
+  background-color: #38465c;
 }
 
 .navbar-custom .nav-link,
@@ -118,7 +117,6 @@
   background: none; /* Remove qualquer fundo padrão */
   border: none; /* Remove borda */
   font-weight: bold; /* Adiciona um estilo de fonte consistente */
-  font-family: "Montserrat", Arial, sans-serif;
   text-decoration: none;
   cursor: pointer;
   font-size: 20px;
@@ -126,17 +124,17 @@
 
 .navbar-custom .nav-link:hover,
 .navbar-custom .dropdown-toggle-custom:hover {
-  color: #cab49b; /* Cor do texto ao passar o mouse */
+  color: #0d6efd; /* Cor do texto ao passar o mouse */
   text-decoration: underline; /* Ou mantenha sem sublinhado */
 }
 
 .navbar-custom .nav-link.active,
 .navbar-custom .dropdown-toggle-custom.active {
-  color: #cab49b; /* Cor do texto ativo */
+  color: #0d6efd; /* Cor do texto ativo */
 }
 
 .dropdown-menu-custom {
-  background-color: #292929 !important; /* Cor de fundo do menu */
+  background-color: #38465c !important; /* Cor de fundo do menu */
   border: 1px solid #00000056; /* Cor da borda */
   border-radius: 5px; /* Borda arredondada, se desejar ajustar */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -144,15 +142,15 @@
 
 /* Estilo dos itens do menu */
 .dropdown-menu-custom .dropdown-item {
-  background-color: #292929;
+  background-color: #38465c;
   color: #fff; /* Cor do texto dos itens */
   font-weight: bold; /* Negrito para os itens */
 }
 
 /* Estilo dos itens ao passar o mouse */
 .dropdown-menu-custom .dropdown-item:hover {
-  background-color: #151515; /* Cor de fundo ao passar o mouse */
-  color: #cab49b; /* Cor do texto ao passar o mouse */
+  background-color: #242d3b; /* Cor de fundo ao passar o mouse */
+  color: #0d6efd; /* Cor do texto ao passar o mouse */
 }
 
 .cart-button {
@@ -189,13 +187,13 @@
   justify-content: center !important;
   padding: 0 !important;
   font-size: 24px !important;
-  background-color: #cab49b !important;
+  background-color: #0d6efd !important;
   border: 0 !important;
   color: #000 !important;
 }
 
 .add-product-button:hover {
-  background-color: #b69c78 !important;
+  background-color: #0d6efd !important;
 }
 
 .add-product-button span {
@@ -213,18 +211,22 @@
 .offcanvas-custom .offcanvas-body {
   display: flex;
   width: 100%;
-  background-color: #000;
+  background-color: #01081d;
   color: #fff;
 }
 
 .offcanvas-custom .offcanvas-header {
-  background-color: #000;
+  background-color: #01081d;
   color: #fff;
 }
 
-.offcanvas-custom-item{
+.offcanvas-custom-item {
   width: 100%;
   gap: 20px;
+}
+
+.navbar-cart {
+  margin-inline: 1rem;
 }
 
 @media (max-width: 767px) {
@@ -260,9 +262,19 @@
     padding: 0 !important;
     text-decoration: none !important;
   }
-  
-  .dropdown-toggle-custom:hover {
-    color: #cab49b !important;
-  }
 
+  .dropdown-toggle-custom:hover {
+    color: #0d6efd !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .navbar-custom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 9rem;
+    padding: 10px 35px !important;
+  }
 }

@@ -1,7 +1,6 @@
 .cart {
-  padding: 7%;
   padding-bottom: 0;
-  margin-top: 160px;
+  margin-top: 150px;
   margin-bottom: 50px;
   min-height: 75vh;
 }
@@ -53,6 +52,8 @@
 @media (max-width: 767px) {
   .cart{
     padding: 0;
+    margin-top: 165px;
+    margin-inline: 10px;
   }
   .cart-container {
     flex-direction: column;

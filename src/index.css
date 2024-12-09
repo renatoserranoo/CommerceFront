@@ -1,20 +1,21 @@
-body{
+body {
   margin: 0;
 }
 
 @font-face {
-  font-family: 'Montserrat';
-  src: url('/caminho/para/fontes/Montserrat.woff2') format('woff2'),
-       url('/caminho/para/fontes/Montserrat.woff') format('woff');
+  font-family: "Montserrat";
+  src: url("/caminho/para/fontes/Montserrat.woff2") format("woff2"),
+    url("/caminho/para/fontes/Montserrat.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 :root {
-  font-family: 'Neutra Text';
-  src: url('/caminho/para/fontes/NeutraText.woff2') format('woff2'),
-       url('/caminho/para/fontes/NeutraText.woff') format('woff');  line-height: 1.5;
-  font-family: 'Neutra Text', Arial, sans-serif;
+  font-family: "Neutra Text";
+  src: url("/caminho/para/fontes/NeutraText.woff2") format("woff2"),
+    url("/caminho/para/fontes/NeutraText.woff") format("woff");
+  line-height: 1.5;
+  font-family: "Neutra Text", Arial, sans-serif;
   color-scheme: light dark;
   color: rgba(0, 0, 0, 0.87);
   background-color: #f2f3f4;
@@ -24,8 +25,20 @@ body{
   -moz-osx-font-smoothing: grayscale;
 }
 
-.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
-   color: #fff var(--bs-btn-active-color );
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.btn-check:checked + .btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+  color: #fff var(--bs-btn-active-color);
 }
 
 ::-webkit-scrollbar {
@@ -37,6 +50,6 @@ body{
   border-radius: 5px;
 }
 
-.link{
+.link {
   text-decoration: none !important;
 }

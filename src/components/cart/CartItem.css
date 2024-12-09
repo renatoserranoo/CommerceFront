@@ -52,23 +52,13 @@
   align-items: center !important;
   justify-content: center !important;
 }
+
 .quantity-button b {
   transform: translateY(-2px) !important;
 }
 
 .quantity-button:hover {
   background-color: rgb(223, 223, 223) !important;
-}
-
-.remove-button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
 }
 
 .remove-button:hover {
@@ -101,6 +91,11 @@
   .custom-quantity {
     flex-direction: column-reverse;
   }
+
+  .custom-quantity p {
+    font-size: 1.1rem;
+  }
+
   .trash-icon {
     width: 17px;
   }

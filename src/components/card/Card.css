@@ -39,12 +39,12 @@
   margin-bottom: 10px;
   align-items: center;
   justify-content: center;
-  color: #13aa52;
+  color: #0d6efd;
 }
 
 .card-button {
-  background-color: #13aa52;
-  border: 1px solid #13aa52;
+  background-color: #0d6efd;
+  border: 1px solid #0d6efd;
   border-radius: 4px;
   width: 70%;
   box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;

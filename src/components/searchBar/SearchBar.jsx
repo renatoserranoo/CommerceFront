@@ -47,7 +47,10 @@ const SearchBar = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
+      if (
+        searchBarRef.current &&
+        !searchBarRef.current.contains(event.target)
+      ) {
         setSuggestions([]);
       }
     };
@@ -104,8 +107,19 @@ const SearchBar = () => {
                 className="product-search"
                 style={{ border: "0", fontSize: "15px" }}
               >
-                <img src={product.image} />
-                {product.title} <b>R${product.price}</b>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <span>
+                    <img src={product.image} style={{marginRight:'10px'}}/>
+                    {product.title}
+                  </span>
+                  <b style={{ color: "#0d6efd" }}>R${product.price}</b>
+                </div>
               </ListGroup.Item>
             </Link>
           ))}

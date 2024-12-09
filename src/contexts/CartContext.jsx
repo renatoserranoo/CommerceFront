@@ -12,7 +12,7 @@ export const CartProvider = ({ children }) => {
       const response = await api.post("/cart", { productId, quantity });
       setCartItems(response.data);
     } catch (error) {
-      console.error("Failed to add item to cart", error);
+      console.error("Falha ao adicionar item ao carrinho", error);
     }
   };
 
@@ -21,7 +21,7 @@ export const CartProvider = ({ children }) => {
       const response = await api.get("/cart");
       setCartItems(response.data);
     } catch (error) {
-      console.error("Failed to load cart", error);
+      console.error("Falha ao carregar carrinho", error);
     }
   };
 

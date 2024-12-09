@@ -21,7 +21,7 @@ const Home = () => {
       } catch (error) {
         console.error(error);
 
-        setError("Failed to load products");
+        setError("Falha ao carregar produtos");
       } finally {
         setLoading(false);
       }
@@ -45,13 +45,13 @@ const Home = () => {
   }
 
   if (error) {
-    return <div className="home-error">Error: {error}</div>;
+    return <div className="home-error">{error}</div>;
   }
 
   return (
     <div className="home-container">
       <img src={banner} alt="" className="banner" />
-      <b id="product-section">Todos Produtos</b>
+      <b id="product-section">Nossos Produtos</b>
       <div className="card-grid">
         {data?.map((productData) => (
           <Card
@@ -64,6 +64,7 @@ const Home = () => {
           />
         ))}
       </div>
+      
     </div>
   );
 };

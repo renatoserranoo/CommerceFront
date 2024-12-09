@@ -1,8 +1,5 @@
 .product-container {
-  height: 90vh;
-  padding: 7%;
-  padding-bottom: 0;
-  margin-top: 160px;
+  margin: 0;
 }
 
 .product-page {
@@ -91,13 +88,12 @@
 #cart-image {
   max-width: 23px;
   margin-inline: 6px;
+  margin-bottom: 3px;
 }
 
 @media (max-width: 767px) {
   .product-container {
-    width: 100%;
-    height: auto;
-    margin-bottom: 30px;
+    margin-top: 150px;
   }
   .product-title {
     margin: 10px;

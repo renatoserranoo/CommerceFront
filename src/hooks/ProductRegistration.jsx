@@ -43,7 +43,7 @@ const ProductRegistration = () => {
     try {
       if (isEditMode) {
         const updatedProduct = { ...product, id: parseInt(id) };
-        await api.put("/products", updatedProduct);
+        await api.put("/products", updatedProduct); 
         setMessage("Produto atualizado com sucesso!");
       } else {
         await api.post("/products", product);
@@ -61,7 +61,7 @@ const ProductRegistration = () => {
   };
 
   return (
-    <Container style={{ height: "85vh", margin: "160px 0 8% 0"}}>
+    <Container style={{ margin: "160px 0 8% 0" }}>
       <Row className="justify-content-md-center">
         <Col md={6}>
           <h2>{isEditMode ? "Editar Produto" : "Cadastrar Produto"}</h2>
